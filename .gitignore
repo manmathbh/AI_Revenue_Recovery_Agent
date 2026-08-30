@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+.next/
+frontend/out/
+
+# Env & secrets
+.env
+.env.local
+*.pem
+
+# Data & reports (regenerate via scripts)
+# NOTE: data/dataset_v1.jsonl IS committed (frozen spec artifact); see .gitignore exception below.
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+reports/*.md
+reports/*.json
+!reports/.gitkeep
