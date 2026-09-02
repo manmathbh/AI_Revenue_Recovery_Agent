@@ -28,7 +28,8 @@ function App() {
   const [cases, setCases] = useState<CaseItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = import.meta.env.VITE_API_URL || 
+    (window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://ai-revenue-recovery-agent-eta.vercel.app');
 
   const fetchData = async () => {
     try {
