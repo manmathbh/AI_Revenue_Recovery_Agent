@@ -10,6 +10,7 @@ import hmac
 import json
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi.responses import RedirectResponse
 from sqlalchemy import desc, func, select
 
 from app.config import get_settings
@@ -44,7 +45,14 @@ def _verify_signature(raw: bytes, signature: str | None) -> bool:
     return hmac.compare_digest(expected, signature)
 
 
+@app.get("/", include_in_schema=False)
+async def root():
+    """Redirect to API documentation."""
+    return RedirectResponse(url="/docs")
+
+
 @app.get("/healthz")
+@app.get("/health")
 async def healthz():
     return {"ok": True}
 
