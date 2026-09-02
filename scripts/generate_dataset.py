@@ -319,7 +319,7 @@ def main() -> None:
 
             # S09: emit duplicate deliveries of the SAME failed event.
             if scenario == "S09":
-                for dup in range(1, 3):  # 2 extra deliveries (3 total)
+                for _dup in range(1, 3):  # 2 extra deliveries (3 total)
                     events.append((seq, webhook_body(event_id, "payment.failed", payment,
                                                      created_at),
                                    case_key, scenario, gt))
@@ -349,7 +349,7 @@ def main() -> None:
     print(f"seed={args.seed} size={args.size}")
     print(f"events written: {len(events)} -> {out_path}")
     print(f"ground truth written: {len(ground_truths)} cases -> {gt_path}")
-    print("scenario case counts:", {s: c for s, c in counts})
+    print("scenario case counts:", dict(counts))
     print("event deliveries per scenario:", dict(sorted(by_scenario.items())))
     recoverable = sum(1 for g in ground_truths if g["recoverable"])
     print(f"recoverable cases: {recoverable}/{len(ground_truths)} "
