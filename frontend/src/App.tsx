@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Activity, ShieldAlert, IndianRupee, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
+import { Activity, ShieldAlert, IndianRupee, ShieldCheck, Clock } from 'lucide-react';
 import './index.css';
 
 // Types matching the FastAPI response
