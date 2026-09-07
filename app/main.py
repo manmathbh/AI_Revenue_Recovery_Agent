@@ -9,7 +9,7 @@ import hashlib
 import hmac
 import json
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, Body
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import desc, func, select
@@ -69,7 +69,11 @@ async def healthz():
 
 
 @app.post("/webhooks/razorpay")
-async def razorpay_webhook(request: Request, x_razorpay_signature: str | None = Header(default=None)):
+async def razorpay_webhook(
+    request: Request, 
+    x_razorpay_signature: str | None = Header(default=None),
+    payload: dict = Body(default=None, description="Paste the Webhook JSON payload here")
+):
     raw = await request.body()
     valid = _verify_signature(raw, x_razorpay_signature)
     try:
